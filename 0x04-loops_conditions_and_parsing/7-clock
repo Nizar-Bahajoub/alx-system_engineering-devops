@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# displays the time for 12 hours and 59 minutes
+h=0
+m=1
+echo "Hour: 0"
+while [ $h -le 12 ] && [ $m -le 59 ]; do
+	echo "$m"
+	if [ $m -eq 59 ] && [ $h -ne 12 ]; then
+		h=$((h + 1))
+		m=0
+		echo "Hour: $h"
+	fi
+	m=$((m + 1))
+done

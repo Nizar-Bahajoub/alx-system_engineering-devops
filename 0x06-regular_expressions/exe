@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#execute permission
+chmod u+x *.rb

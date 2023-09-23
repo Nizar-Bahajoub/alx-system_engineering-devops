@@ -3,7 +3,7 @@
 
 file_line {'use private key in path':
   path  => '/etc/ssh/ssh_config',
-  line  => 'PasswordAuthentification no'
+  line  => 'PasswordAuthentication no'
 }
 
 file_line {'identity file':

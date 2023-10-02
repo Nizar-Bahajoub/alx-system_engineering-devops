@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# redirecting to another page
+
+sudo apt-get update -y
+sudo apt-get install nginx -y
+sudo ufw allow 'Nginx HTTP'
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bckp
+
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+sudo sed -i "/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html > /dev/null
+sudo sed -i "46i error_page 404 /custom_404.html;" /etc/nginx/sites-available/default
+sudo sed -i "/isten 80 default_server/a add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+
+sudo service nginx restart

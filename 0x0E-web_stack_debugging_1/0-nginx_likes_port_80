@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Debugging server with a problem on listening on prt 80
+sudo apt-get update -y
+sudo apt-get install nginx -y
+sudo service nginx restart

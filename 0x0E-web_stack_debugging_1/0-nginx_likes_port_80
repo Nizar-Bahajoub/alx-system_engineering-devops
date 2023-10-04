@@ -2,4 +2,5 @@
 # Debugging server with a problem on listening on prt 80
 sudo apt-get update -y
 sudo apt-get install nginx -y
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 sudo service nginx restart

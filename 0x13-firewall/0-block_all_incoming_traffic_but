@@ -2,4 +2,4 @@ sudo ufw default deny incoming
 sudo ufw defaul allow outgoing
 sudo ufw allow ssh
 sudo ufw allow http
-sudo ufw allow hhtps
+sudo ufw allow https

@@ -8,21 +8,18 @@ if __name__ == '__main__':
     todos = requests.get(
             "https://jsonplaceholder.typicode.com/todos?user_Id={}".format(
                 int(argv[1]))
-            )
+            ).json()
     user = requests.get(
             "https://jsonplaceholder.typicode.com/users?id={}".format(
                 int(argv[1]))
-            )
-    done = 0
-    total = 0
+            ).json()
     tasks_done = []
-    for todo in todos.json():
+
+    for todo in todos:
         if todo['completed'] is True:
             tasks_done.append(todo['title'])
-            done += 1
-        total += 1
 
     print("Employee {} is done with tasks({}/{}):".format(
-            user.json()[0]['name'], done, total))
+            user[0]['name'], len(tasks_done), len(todos)))
     for task in tasks_done:
         print("\t {}".format(task))

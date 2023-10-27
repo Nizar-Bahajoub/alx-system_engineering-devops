@@ -1,25 +1,14 @@
 #!/usr/bin/python3
-""" API from Placeholdder """
+"""Returns to-do list information for a given employee ID."""
 import requests
-from sys import argv
+import sys
 
+if __name__ == "__main__":
+    url = "https://jsonplaceholder.typicode.com/"
+    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-if __name__ == '__main__':
-    todos = requests.get(
-            "https://jsonplaceholder.typicode.com/todos?user_Id={}".format(
-                int(argv[1]))
-            ).json()
-    users = requests.get(
-            "https://jsonplaceholder.typicode.com/users").json()
-    tasks_done = []
-
-    for todo in todos:
-        if todo['completed'] is True:
-            tasks_done.append(todo['title'])
-    for user in users:
-        if user['id'] == int(argv[1]):
-            name = user['name']
+    completed = [t.get("title") for t in todos if t.get("completed") is True]
     print("Employee {} is done with tasks({}/{}):".format(
-            name, len(tasks_done), len(todos)))
-    for task in tasks_done:
-        print("\t {}".format(task))
+        user.get("name"), len(completed), len(todos)))
+    [print("\t {}".format(c)) for c in completed]

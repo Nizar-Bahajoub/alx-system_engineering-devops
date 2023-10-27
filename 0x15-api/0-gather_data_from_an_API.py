@@ -23,6 +23,6 @@ if __name__ == '__main__':
         total += 1
 
     print("Employee {} is done with tasks({}/{}):".format(
-            user.json()[0]["name"], done, total))
+            user.json()[0]['name'], done, total))
     for task in tasks_done:
         print("\t {}".format(task))

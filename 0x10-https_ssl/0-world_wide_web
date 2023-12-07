@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 # Displays information about subdomains
-
-# Function retreive end display subdomain informations
+#
 domain_information() {
-	#DNS lookup
 	local domain="$1"
 	local subdomain="$2"
 

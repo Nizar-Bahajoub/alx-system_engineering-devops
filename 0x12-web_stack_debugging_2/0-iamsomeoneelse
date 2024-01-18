@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Script to print the user passed in argument
+su -c "whoami" - $1

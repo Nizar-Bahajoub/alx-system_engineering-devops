@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Creates a Mysql dump
+current_date=$(date +"%d-%m-%Y")
+sudo mysqldump -uroot -p"$1" --all-databases | tee backup.sql
+tar -czvf "${current_date}.tar.gz" backup.sql

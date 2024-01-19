@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Gathering Data using API"""
-
+""" Gathering Data using API """
 
 from requests import *
 from sys import argv

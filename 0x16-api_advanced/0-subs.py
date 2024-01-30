@@ -5,12 +5,15 @@
 import requests
 
 
+headers = {"User-Agent": "MyAlxCustomUserAgent/1.0"}
+
+
 def number_of_subscribers(subreddit):
-    """ Return the number of subscribers on a given subreddit """
-    response = requests.get("https://www.reddit.com/r/{}/about.json".format(
-                            subreddit),
-                            headers={"User-Agent": "Nizar-Custom-User-Agent"},
-                            allow_redirects=False)
-    if response.status_code >= 300:
+    """Returning the number of subscribers"""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    response = requests.get(url, allow_redirects=False, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        return data["data"]["subscribers"]
+    else:
         return 0
-    return response.json().get("data").get("subscribers")
